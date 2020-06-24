@@ -1,5 +1,5 @@
 //
-//  BaseSceneCoordinator.swift
+//  ToDoListViewModel.swift
 //  Exercise
 //
 //  Created by Elbert John A. Orozco on 6/25/20.
@@ -8,6 +8,6 @@
 
 import Foundation
 
-class BaseSceneCoordinator: SceneCoordinator {
+class ToDoListViewModel: BaseViewModel {
     
 }

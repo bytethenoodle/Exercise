@@ -39,7 +39,7 @@ open class AppRouter {
     private static func viewController(route: AppRouter.Route) -> UIViewController? {
         switch route {
             case .home:
-                return MainViewController.fromStoryboard()
+                return ToDoListTableViewController.fromStoryboard()
         }
     }
     
