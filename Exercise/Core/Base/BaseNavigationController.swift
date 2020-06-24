@@ -16,4 +16,13 @@ class BaseNavigationController: UINavigationController {
         }
         return .default
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.setAppearance()
+    }
+    
+    private func setAppearance() {
+        navigationBar.barTintColor = Color.backgroundColor
+    }
 }

@@ -10,10 +10,15 @@ import Foundation
 
 class ToDoListCoordinator: BaseSceneCoordinator {
     
+    let navigationController = BaseNavigationController()
+    
     override func start() {
         super.start()
-        let vc = ToDoListTableViewController.fromStoryboard()
-        vc?.coordinator = self
-        window?.rootViewController = vc
+        
+        guard let vc = ToDoListTableViewController.fromStoryboard() else {return}
+        vc.coordinator = self
+        
+        navigationController.setViewControllers([vc], animated: false)
+        window?.rootViewController = navigationController
     }
 }
