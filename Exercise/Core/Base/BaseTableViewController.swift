@@ -11,4 +11,11 @@ import UIKit
 class BaseTableViewController<T: ViewModel>: UITableViewController, Storyboardable, ViewModelable, SceneCoordinatable {
     lazy var viewModel: T? = T()
     lazy var coordinator: SceneCoordinator? = nil
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if #available(iOS 13.0, *) {
+            return .darkContent
+        }
+        return .default
+    }
 }

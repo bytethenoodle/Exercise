@@ -1,5 +1,5 @@
 //
-//  BaseViewController.swift
+//  BaseNavigationController.swift
 //  Exercise
 //
 //  Created by Elbert John A. Orozco on 6/25/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseViewController<T: ViewModel>: UIViewController, Storyboardable, ViewModelable, SceneCoordinatable {
+class BaseNavigationController<T: ViewModel>: UINavigationController, Storyboardable, ViewModelable, SceneCoordinatable {
     lazy var viewModel: T? = T()
     lazy var coordinator: SceneCoordinator? = nil
     
