@@ -6,6 +6,15 @@
 //  Copyright © 2020 Elbert John A. Orozco. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-open class SceneCoordinator {}
+open class SceneCoordinator {
+    
+    open var window: UIWindow?
+    
+    init(window: UIWindow?) {
+        self.window = window
+    }
+    
+    open func start() {}
+}

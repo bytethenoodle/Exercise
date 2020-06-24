@@ -8,9 +8,10 @@
 
 import UIKit
 
-class BaseViewController<T: ViewModel>: UIViewController, Storyboardable, ViewModelable, SceneCoordinatable {
-    lazy var viewModel: T? = T()
-    lazy var coordinator: SceneCoordinator? = nil
+class BaseViewController<VT: ViewModel, CT: SceneCoordinator>: UIViewController, Storyboardable, ViewModelable, SceneCoordinatable {
+        
+    lazy var viewModel: VT? = VT()
+    lazy var coordinator: CT? = nil
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         if #available(iOS 13.0, *) {

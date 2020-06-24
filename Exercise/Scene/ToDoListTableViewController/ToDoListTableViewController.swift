@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ToDoListTableViewController: BaseTableViewController<ToDoListViewModel> {
+class ToDoListTableViewController: BaseTableViewController<ToDoListViewModel, ToDoListCoordinator> {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -11,6 +11,10 @@ import UIKit
 /// Class that handles the routing of pages within the app
 open class AppRouter {
     
+    // MARK: - Variables
+    
+    static let window = UIApplication.shared.keyWindow
+    
     // MARK: - Enums
     
     /// Flow routes of the app
@@ -31,21 +35,12 @@ open class AppRouter {
     
     // MARK: - Private Static Methods
     
-    /// Returns the view controller from the defined route
-    /// - Parameters:
-    ///   - route: The defined route
-    /// - Returns: The view controller from the defined route
-    ///
-    private static func viewController(route: AppRouter.Route) -> UIViewController? {
+    private static func set(route: AppRouter.Route) {
         switch route {
             case .home:
-                return ToDoListTableViewController.fromStoryboard()
+                ToDoListCoordinator(window: window).start()
+                break
         }
-    }
-    
-    private static func set(route: AppRouter.Route) {
-        let window = UIApplication.shared.keyWindow
-        window?.rootViewController = viewController(route: route)
     }
     
     // MARK: - Open Static Methods
