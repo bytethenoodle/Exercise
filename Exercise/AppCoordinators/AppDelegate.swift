@@ -21,6 +21,10 @@ class AppDelegate: AppCoordinator, UIApplicationDelegate {
         return true
     }
 
+    func applicationWillTerminate(_ application: UIApplication) {
+        CoreDataUtility.saveContext()
+    }
+    
     // MARK: UISceneSession Lifecycle
 
     @available(iOS 13.0, *)

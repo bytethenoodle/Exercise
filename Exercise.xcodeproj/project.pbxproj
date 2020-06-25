@@ -14,6 +14,8 @@
 		7D487E1424A3CD5000E02E21 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D487E1324A3CD5000E02E21 /* BaseNavigationController.swift */; };
 		7D487E1624A3CDE000E02E21 /* ToDoListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D487E1524A3CDE000E02E21 /* ToDoListCoordinator.swift */; };
 		7D487E1924A3D43600E02E21 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D487E1824A3D43600E02E21 /* Color.swift */; };
+		7D487E2024A3DD2200E02E21 /* CoreDataUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D487E1F24A3DD2200E02E21 /* CoreDataUtility.swift */; };
+		7D487E2324A3DD7100E02E21 /* Exercise.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D487E2124A3DD7100E02E21 /* Exercise.xcdatamodeld */; };
 		7D9B112A24A3BAF9006D49FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9B112924A3BAF9006D49FA /* AppDelegate.swift */; };
 		7D9B112C24A3BAF9006D49FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9B112B24A3BAF9006D49FA /* SceneDelegate.swift */; };
 		7D9B112E24A3BAF9006D49FA /* ToDoListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9B112D24A3BAF9006D49FA /* ToDoListTableViewController.swift */; };
@@ -41,6 +43,8 @@
 		7D487E1324A3CD5000E02E21 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		7D487E1524A3CDE000E02E21 /* ToDoListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListCoordinator.swift; sourceTree = "<group>"; };
 		7D487E1824A3D43600E02E21 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		7D487E1F24A3DD2200E02E21 /* CoreDataUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUtility.swift; sourceTree = "<group>"; };
+		7D487E2224A3DD7100E02E21 /* Exercise.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Exercise.xcdatamodel; sourceTree = "<group>"; };
 		7D9B112624A3BAF9006D49FA /* Exercise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Exercise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D9B112924A3BAF9006D49FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D9B112B24A3BAF9006D49FA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,8 +90,17 @@
 			isa = PBXGroup;
 			children = (
 				7D487E1824A3D43600E02E21 /* Color.swift */,
+				7D487E1E24A3DB2C00E02E21 /* CoreData */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		7D487E1E24A3DB2C00E02E21 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				7D487E1F24A3DD2200E02E21 /* CoreDataUtility.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		7D95D0D924A3C25E00872A8B /* Scene */ = {
@@ -206,6 +219,7 @@
 				7D487E1124A3CAEC00E02E21 /* Colors.xcassets */,
 				7D9B113424A3BAFA006D49FA /* LaunchScreen.storyboard */,
 				7D9B113724A3BAFA006D49FA /* Info.plist */,
+				7D487E2124A3DD7100E02E21 /* Exercise.xcdatamodeld */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -339,10 +353,12 @@
 				7D487E1924A3D43600E02E21 /* Color.swift in Sources */,
 				7D9B114F24A3BFFC006D49FA /* ViewModel.swift in Sources */,
 				7D9B114324A3BFA1006D49FA /* BaseViewController.swift in Sources */,
+				7D487E2024A3DD2200E02E21 /* CoreDataUtility.swift in Sources */,
 				7D9B112E24A3BAF9006D49FA /* ToDoListTableViewController.swift in Sources */,
 				7D9B112A24A3BAF9006D49FA /* AppDelegate.swift in Sources */,
 				7D9B115424A3C01D006D49FA /* Storyboardable.swift in Sources */,
 				7D9B114D24A3BFE5006D49FA /* SceneCoordinator.swift in Sources */,
+				7D487E2324A3DD7100E02E21 /* Exercise.xcdatamodeld in Sources */,
 				7D9B114124A3BF8B006D49FA /* BaseSceneCoordinator.swift in Sources */,
 				7D9B114B24A3BFDB006D49FA /* AppCoordinator.swift in Sources */,
 				7D487E1424A3CD5000E02E21 /* BaseNavigationController.swift in Sources */,
@@ -554,6 +570,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		7D487E2124A3DD7100E02E21 /* Exercise.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7D487E2224A3DD7100E02E21 /* Exercise.xcdatamodel */,
+			);
+			currentVersion = 7D487E2224A3DD7100E02E21 /* Exercise.xcdatamodel */;
+			path = Exercise.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 7D9B111E24A3BAF9006D49FA /* Project object */;
 }
