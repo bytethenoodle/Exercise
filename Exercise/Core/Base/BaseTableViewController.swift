@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class BaseTableViewController<VT: ViewModel, CT: SceneCoordinator>: UITableViewController, Storyboardable, ViewModelable, SceneCoordinatable {
     
     lazy var viewModel: VT? = VT()
     lazy var coordinator: CT? = nil
-    
+    lazy var disposeBag = DisposeBag()
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         if #available(iOS 13.0, *) {
             return .darkContent
