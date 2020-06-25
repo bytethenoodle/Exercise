@@ -34,6 +34,7 @@
 		7D9B115224A3C012006D49FA /* SceneCoordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9B115124A3C012006D49FA /* SceneCoordinatable.swift */; };
 		7D9B115424A3C01D006D49FA /* Storyboardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9B115324A3C01D006D49FA /* Storyboardable.swift */; };
 		7D9B115624A3C027006D49FA /* ViewModelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9B115524A3C027006D49FA /* ViewModelable.swift */; };
+		7DC7FA6924A4703700F5EB27 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7FA6824A4703700F5EB27 /* UIViewController.swift */; };
 		7DE937E224A4454500596582 /* ToDoItemAccessProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE937E124A4454500596582 /* ToDoItemAccessProvider.swift */; };
 		7DE937E524A4528700596582 /* ToDoListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE937E424A4528700596582 /* ToDoListItemCell.swift */; };
 		7DE937E724A454D300596582 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE937E624A454D300596582 /* BaseTableViewCell.swift */; };
@@ -70,6 +71,7 @@
 		7D9B115124A3C012006D49FA /* SceneCoordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinatable.swift; sourceTree = "<group>"; };
 		7D9B115324A3C01D006D49FA /* Storyboardable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboardable.swift; sourceTree = "<group>"; };
 		7D9B115524A3C027006D49FA /* ViewModelable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelable.swift; sourceTree = "<group>"; };
+		7DC7FA6824A4703700F5EB27 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		7DE937E124A4454500596582 /* ToDoItemAccessProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoItemAccessProvider.swift; sourceTree = "<group>"; };
 		7DE937E424A4528700596582 /* ToDoListItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListItemCell.swift; sourceTree = "<group>"; };
 		7DE937E624A454D300596582 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 		7D9B114624A3BFB4006D49FA /* General */ = {
 			isa = PBXGroup;
 			children = (
+				7DC7FA6724A4701A00F5EB27 /* Extensions */,
 				7D9B114724A3BFC2006D49FA /* Classes */,
 				7D9B115024A3C001006D49FA /* Protocols */,
 			);
@@ -253,6 +256,14 @@
 				7D487E2124A3DD7100E02E21 /* Exercise.xcdatamodeld */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		7DC7FA6724A4701A00F5EB27 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7DC7FA6824A4703700F5EB27 /* UIViewController.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		7DE937E324A4527300596582 /* Parts */ = {
@@ -408,6 +419,7 @@
 				7D9B114924A3BFCE006D49FA /* AppRouter.swift in Sources */,
 				7D487E1024A3C4ED00E02E21 /* ToDoListViewModel.swift in Sources */,
 				7D9B115224A3C012006D49FA /* SceneCoordinatable.swift in Sources */,
+				7DC7FA6924A4703700F5EB27 /* UIViewController.swift in Sources */,
 				7D487E0E24A3C4AC00E02E21 /* BaseTableViewController.swift in Sources */,
 				7D9B112C24A3BAF9006D49FA /* SceneDelegate.swift in Sources */,
 				7D9B114524A3BFAC006D49FA /* BaseViewModel.swift in Sources */,
