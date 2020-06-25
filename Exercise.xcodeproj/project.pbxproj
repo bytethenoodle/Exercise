@@ -16,6 +16,9 @@
 		7D487E1924A3D43600E02E21 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D487E1824A3D43600E02E21 /* Color.swift */; };
 		7D487E2024A3DD2200E02E21 /* CoreDataUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D487E1F24A3DD2200E02E21 /* CoreDataUtility.swift */; };
 		7D487E2324A3DD7100E02E21 /* Exercise.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D487E2124A3DD7100E02E21 /* Exercise.xcdatamodeld */; };
+		7D61883924A4400B00C4AEB5 /* ToDoItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D61883724A4400B00C4AEB5 /* ToDoItem+CoreDataProperties.swift */; };
+		7D61883A24A4400B00C4AEB5 /* ToDoItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D61883824A4400B00C4AEB5 /* ToDoItem+CoreDataClass.swift */; };
+		7D61883C24A441AD00C4AEB5 /* ToDoItemAccessProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D61883B24A441AD00C4AEB5 /* ToDoItemAccessProvider.swift */; };
 		7D9B112A24A3BAF9006D49FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9B112924A3BAF9006D49FA /* AppDelegate.swift */; };
 		7D9B112C24A3BAF9006D49FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9B112B24A3BAF9006D49FA /* SceneDelegate.swift */; };
 		7D9B112E24A3BAF9006D49FA /* ToDoListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9B112D24A3BAF9006D49FA /* ToDoListTableViewController.swift */; };
@@ -45,6 +48,9 @@
 		7D487E1824A3D43600E02E21 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		7D487E1F24A3DD2200E02E21 /* CoreDataUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUtility.swift; sourceTree = "<group>"; };
 		7D487E2224A3DD7100E02E21 /* Exercise.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Exercise.xcdatamodel; sourceTree = "<group>"; };
+		7D61883724A4400B00C4AEB5 /* ToDoItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ToDoItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		7D61883824A4400B00C4AEB5 /* ToDoItem+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ToDoItem+CoreDataClass.swift"; sourceTree = "<group>"; };
+		7D61883B24A441AD00C4AEB5 /* ToDoItemAccessProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemAccessProvider.swift; sourceTree = "<group>"; };
 		7D9B112624A3BAF9006D49FA /* Exercise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Exercise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D9B112924A3BAF9006D49FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D9B112B24A3BAF9006D49FA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +109,24 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		7D61883124A43F5200C4AEB5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7D61883224A43F5800C4AEB5 /* ToDoItem */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7D61883224A43F5800C4AEB5 /* ToDoItem */ = {
+			isa = PBXGroup;
+			children = (
+				7D61883824A4400B00C4AEB5 /* ToDoItem+CoreDataClass.swift */,
+				7D61883724A4400B00C4AEB5 /* ToDoItem+CoreDataProperties.swift */,
+				7D61883B24A441AD00C4AEB5 /* ToDoItemAccessProvider.swift */,
+			);
+			path = ToDoItem;
+			sourceTree = "<group>";
+		};
 		7D95D0D924A3C25E00872A8B /* Scene */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				7D9B113D24A3BE3D006D49FA /* AppCoordinators */,
+				7D61883124A43F5200C4AEB5 /* Models */,
 				7D95D0D924A3C25E00872A8B /* Scene */,
 				7D9B113E24A3BE5D006D49FA /* Core */,
 				7D9B115724A3C03B006D49FA /* Resources */,
@@ -355,10 +380,12 @@
 				7D9B114324A3BFA1006D49FA /* BaseViewController.swift in Sources */,
 				7D487E2024A3DD2200E02E21 /* CoreDataUtility.swift in Sources */,
 				7D9B112E24A3BAF9006D49FA /* ToDoListTableViewController.swift in Sources */,
+				7D61883A24A4400B00C4AEB5 /* ToDoItem+CoreDataClass.swift in Sources */,
 				7D9B112A24A3BAF9006D49FA /* AppDelegate.swift in Sources */,
 				7D9B115424A3C01D006D49FA /* Storyboardable.swift in Sources */,
 				7D9B114D24A3BFE5006D49FA /* SceneCoordinator.swift in Sources */,
 				7D487E2324A3DD7100E02E21 /* Exercise.xcdatamodeld in Sources */,
+				7D61883924A4400B00C4AEB5 /* ToDoItem+CoreDataProperties.swift in Sources */,
 				7D9B114124A3BF8B006D49FA /* BaseSceneCoordinator.swift in Sources */,
 				7D9B114B24A3BFDB006D49FA /* AppCoordinator.swift in Sources */,
 				7D487E1424A3CD5000E02E21 /* BaseNavigationController.swift in Sources */,
@@ -368,6 +395,7 @@
 				7D487E0E24A3C4AC00E02E21 /* BaseTableViewController.swift in Sources */,
 				7D9B112C24A3BAF9006D49FA /* SceneDelegate.swift in Sources */,
 				7D9B114524A3BFAC006D49FA /* BaseViewModel.swift in Sources */,
+				7D61883C24A441AD00C4AEB5 /* ToDoItemAccessProvider.swift in Sources */,
 				7D9B115624A3C027006D49FA /* ViewModelable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
