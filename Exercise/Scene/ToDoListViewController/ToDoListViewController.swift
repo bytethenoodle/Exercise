@@ -53,11 +53,11 @@ class ToDoListViewController: BaseViewController<ToDoListViewModel, ToDoListCoor
     
     func showAddAlert() {
         self.showAlertWithField(title: "Add Item",
-                                 message: "Adds a new item to the list. Setting the field empty invalidates the process and does nothing.",
+                                 message: "Adds a new item to the list. Setting the field empty or just spaces invalidates the process and does nothing.",
                                  buttonActionTitle: "Add",
                                  action: { [weak self] (string) in
                                     guard let fieldString = string else {return}
-                                    if !(fieldString.isEmpty) {
+                                    if !(fieldString.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty) {
                                         self?.viewModel?.add(title: fieldString)
                                     }
                                  })
@@ -65,12 +65,12 @@ class ToDoListViewController: BaseViewController<ToDoListViewModel, ToDoListCoor
     
     func showEditAlert(indexPath: IndexPath) {
         self.showAlertWithField(title: "Edit Item",
-                                 message: "Edits the title of the selected item. Setting the field empty invalidates the process and does nothing.",
+                                 message: "Edits the title of the selected item. Setting the field empty or just spaces invalidates the process and does nothing.",
                                  buttonActionTitle: "Save",
                                  fieldText: viewModel?.fetchTitle(index: indexPath.row),
                                  action: { [weak self] (string) in
                                     guard let fieldString = string else {return}
-                                    if !(fieldString.isEmpty) {
+                                    if !(fieldString.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty) {
                                         self?.viewModel?.edit(index: indexPath.row, title: fieldString)
                                     }
                                  })
