@@ -12,4 +12,8 @@ class Color {
     static var backgroundColor: UIColor? {
         return UIColor(named: "BackgroundColor")
     }
+    
+    static var textColor: UIColor? {
+        return UIColor(named: "TextColor")
+    }
 }

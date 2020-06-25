@@ -15,7 +15,7 @@ class ToDoListCoordinator: BaseSceneCoordinator {
     override func start() {
         super.start()
         
-        guard let vc = ToDoListTableViewController.fromStoryboard() else {return}
+        guard let vc = ToDoListViewController.fromStoryboard() else {return}
         vc.coordinator = self
         
         navigationController.setViewControllers([vc], animated: false)
