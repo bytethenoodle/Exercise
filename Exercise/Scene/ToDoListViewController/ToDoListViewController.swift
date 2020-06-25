@@ -13,26 +13,44 @@ class ToDoListViewController: BaseViewController<ToDoListViewModel, ToDoListCoor
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var navigationButtonToDoItemAdd: UIBarButtonItem?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
         
-        populateTodoListTableView()
-        setupTodoListTableViewCellWhenTapped()
-        setupTodoListTableViewCellWhenDeleted()
-        setupActionWhenButtonAddTodoTapped()
+        self.setupViewController()
+        
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
     }
     
     // MARK: - perform a binding from observableTodo from ViewModel to todoListTableView
+    
+    private func setupViewController() {
+        DispatchQueue.main.async {
+            self.populateTodoListTableView()
+            self.setupTodoListTableViewCellWhenTapped()
+            self.setupTodoListTableViewCellWhenDeleted()
+            self.setupActionWhenButtonAddTodoTapped()
+        }
+    }
+    
     private func populateTodoListTableView() {
+        
         let observableToDoItems = viewModel?.get().asObservable()
-        observableToDoItems?.bind(to: tableView.rx.items(cellIdentifier: String(describing: ToDoListItemCell.self),
+        let subscription = observableToDoItems?.bind(to: tableView.rx.items(cellIdentifier: String(describing: ToDoListItemCell.self),
                                                          cellType: ToDoListItemCell.self)) { (row, toDoItem, cell) in
             cell.setup(toDoItem: toDoItem)
         }
-        .disposed(by: disposeBag)
+        subscription?.disposed(by: disposeBag)
+        
         
     }
     
