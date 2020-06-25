@@ -12,69 +12,71 @@ import RxCocoa
 
 class ToDoItemAccessProvider {
     
-    private var toDoCoreData = BehaviorRelay<[ToDoItem]>(value: [])
+    // MARK: - Properties
+    
+    private var toDoItemCoreData = BehaviorRelay<[ToDoItem]>(value: [])
     private var managedObjectContext : NSManagedObjectContext
     
+    // MARK: - Initialization
+    
     init() {
-        managedObjectContext = delegate.persistentContainer.viewContext
-        
-        todosFromCoreData.value = fetchData()
+        toDoItemCoreData.accept([ToDoItem]())
+        managedObjectContext = CoreDataUtility.persistentContainer.viewContext
+        toDoItemCoreData.accept(fetch())
     }
     
-    // MARK: - fetching Todos from Core Data and update observable todos
-    private func fetchData() -> [Todo] {
-        let todoFetchRequest = Todo.todoFetchRequest()
-        todoFetchRequest.returnsObjectsAsFaults = false
+    // MARK: - Fetching
+    
+    private func fetch() -> [ToDoItem] {
+        let toDoItemFetchRequest = ToDoItem.fetch()
+        toDoItemFetchRequest.returnsObjectsAsFaults = false
         
         do {
-            return try managedObjectContext.fetch(todoFetchRequest)
+            return try managedObjectContext.fetch(toDoItemFetchRequest)
         } catch {
             return []
         }
-        
     }
     
-    // MARK: - return observable todo
-    public func fetchObservableData() -> Observable<[Todo]> {
-        todosFromCoreData.value = fetchData()
-        return todosFromCoreData.asObservable()
+    public func fetchObservable() -> Observable<[ToDoItem]> {
+        toDoItemCoreData.accept(fetch())
+        return toDoItemCoreData.asObservable()
     }
     
-    // MARK: - add new todo from Core Data
-    public func addTodo(withTodo todo: String) {
-        let newTodo = NSEntityDescription.insertNewObject(forEntityName: "Todo", into: managedObjectContext) as! Todo
+    // MARK: - Operations
+    
+    public func add(title: String) {
+        let newTodo = NSEntityDescription.insertNewObject(forEntityName: "ToDoItem", into: managedObjectContext) as! ToDoItem
         
-        newTodo.todo = todo
+        newTodo.title = title
         newTodo.isCompleted = false
         
         do {
             try managedObjectContext.save()
-            todosFromCoreData.value = fetchData()
+            toDoItemCoreData.accept(fetch())
         } catch {
             fatalError("error saving data")
         }
     }
     
-    // MARK: - toggle selected todo's isCompleted value
-    public func toggleTodoIsCompleted(withIndex index: Int) {
-        todosFromCoreData.value[index].isCompleted = !todosFromCoreData.value[index].isCompleted
+    public func toggle(index: Int) {
+        toDoItemCoreData.value[index].isCompleted = !toDoItemCoreData.value[index].isCompleted
         
         do {
             try managedObjectContext.save()
-            todosFromCoreData.value = fetchData()
+            toDoItemCoreData.accept(fetch())
         } catch {
             fatalError("error change data")
         }
 
     }
     
-    // MARK: - remove specified todo from Core Data
-    public func removeTodo(withIndex index: Int) {
-        managedObjectContext.delete(todosFromCoreData.value[index])
+    public func remove(index: Int) {
+        managedObjectContext.delete(toDoItemCoreData.value[index])
         
         do {
             try managedObjectContext.save()
-            todosFromCoreData.value = fetchData()
+            toDoItemCoreData.accept(fetch())
         } catch {
             fatalError("error delete data")
         }
