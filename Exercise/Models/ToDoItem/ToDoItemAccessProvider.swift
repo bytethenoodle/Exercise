@@ -45,11 +45,29 @@ class ToDoItemAccessProvider {
     
     // MARK: - Operations
     
+    public func fetchTitle(index: Int) -> String? {
+        let toDoItem = toDoItemCoreData.value[index]
+        return toDoItem.title
+    }
+    
     public func add(title: String) {
         let newTodo = NSEntityDescription.insertNewObject(forEntityName: "ToDoItem", into: managedObjectContext) as! ToDoItem
         
         newTodo.title = title
         newTodo.isCompleted = false
+        
+        do {
+            try managedObjectContext.save()
+            toDoItemCoreData.accept(fetch())
+        } catch {
+            fatalError("error saving data")
+        }
+    }
+    
+    public func edit(index: Int, title: String) {
+        let toDoItem = toDoItemCoreData.value[index]
+        
+        toDoItem.title = title
         
         do {
             try managedObjectContext.save()

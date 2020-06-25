@@ -43,18 +43,37 @@ class ToDoListViewController: BaseViewController<ToDoListViewModel, ToDoListCoor
         navigationButtonToDoItemAdd?.rx.tap
             .subscribe(
                 onNext: { [weak self] in
-                    self?.showAlertWithField(title: "Add Item",
-                                             message: "Adds a new item to the list. Setting the field empty invalidates the process and does nothing.",
-                                             buttonActionTitle: "Add",
-                                             action: { [weak self] (string) in
-                                                guard let fieldString = string else {return}
-                                                if !(fieldString.isEmpty) {
-                                                    self?.viewModel?.add(title: fieldString)
-                                                }
-                                             })
+                    self?.showAddAlert()
                 }
             )
             .disposed(by: disposeBag)
+    }
+    
+    // MARK: - Alert Actions
+    
+    func showAddAlert() {
+        self.showAlertWithField(title: "Add Item",
+                                 message: "Adds a new item to the list. Setting the field empty invalidates the process and does nothing.",
+                                 buttonActionTitle: "Add",
+                                 action: { [weak self] (string) in
+                                    guard let fieldString = string else {return}
+                                    if !(fieldString.isEmpty) {
+                                        self?.viewModel?.add(title: fieldString)
+                                    }
+                                 })
+    }
+    
+    func showEditAlert(indexPath: IndexPath) {
+        self.showAlertWithField(title: "Edit Item",
+                                 message: "Edits the title of the selected item. Setting the field empty invalidates the process and does nothing.",
+                                 buttonActionTitle: "Save",
+                                 fieldText: viewModel?.fetchTitle(index: indexPath.row),
+                                 action: { [weak self] (string) in
+                                    guard let fieldString = string else {return}
+                                    if !(fieldString.isEmpty) {
+                                        self?.viewModel?.edit(index: indexPath.row, title: fieldString)
+                                    }
+                                 })
     }
     
     // MARK: - Table Refresh
@@ -83,10 +102,8 @@ extension ToDoListViewController: UITableViewDelegate {
                 return
             }
 
-        let editButton = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
-                
-                
-                
+        let editButton = UITableViewRowAction(style: .normal, title: "Edit") { [weak self] (action, indexPath) in
+                self?.showEditAlert(indexPath: indexPath)
                 return
             }
             return [deleteButton, editButton]

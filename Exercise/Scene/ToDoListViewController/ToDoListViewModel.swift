@@ -40,8 +40,16 @@ class ToDoListViewModel: BaseViewModel {
             .disposed(by: disposeBag)
     }
     
+    public func fetchTitle(index: Int) -> String? {
+        toDoItemAccessProvider.fetchTitle(index: index)
+    }
+    
     public func add(title: String) {
         toDoItemAccessProvider.add(title: title)
+    }
+    
+    public func edit(index: Int, title: String) {
+        toDoItemAccessProvider.edit(index: index, title: title)
     }
     
     public func toggle(index: Int) {
