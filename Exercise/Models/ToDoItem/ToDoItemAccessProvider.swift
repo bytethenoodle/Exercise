@@ -8,14 +8,14 @@
 
 import CoreData
 import RxSwift
+import RxCocoa
 
 class ToDoItemAccessProvider {
     
-    private var toDoCoreData = Variable<[TodoItem]>([])
+    private var toDoCoreData = BehaviorRelay<[ToDoItem]>(value: [])
     private var managedObjectContext : NSManagedObjectContext
     
     init() {
-        toDoCoreData.value = [TodoItem]()
         managedObjectContext = delegate.persistentContainer.viewContext
         
         todosFromCoreData.value = fetchData()
