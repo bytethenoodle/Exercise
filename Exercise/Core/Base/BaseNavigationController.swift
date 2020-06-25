@@ -24,5 +24,6 @@ class BaseNavigationController: UINavigationController {
     
     private func setAppearance() {
         navigationBar.barTintColor = Color.backgroundColor
+        navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: Color.textColor as Any]
     }
 }

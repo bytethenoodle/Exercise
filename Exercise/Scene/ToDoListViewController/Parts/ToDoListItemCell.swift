@@ -6,9 +6,11 @@
 //  Copyright © 2020 Elbert John A. Orozco. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class ToDoListItemCell: BaseTableViewCell {
+    
+    @IBOutlet weak var labelTitle: UILabel?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -17,7 +19,7 @@ class ToDoListItemCell: BaseTableViewCell {
     
     func setup(toDoItem: ToDoItem) {
         
-        textLabel?.text = toDoItem.title
+        labelTitle?.text = toDoItem.title
         
         if toDoItem.isCompleted {
             accessoryType = .checkmark
