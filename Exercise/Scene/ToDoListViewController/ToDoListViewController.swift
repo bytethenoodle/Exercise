@@ -55,11 +55,8 @@ class ToDoListViewController: BaseViewController<ToDoListViewModel, ToDoListCoor
         self.showAlertWithField(title: "Add Item",
                                  message: "Adds a new item to the list. Setting the field empty or just spaces invalidates the process and does nothing.",
                                  buttonActionTitle: "Add",
-                                 action: { [weak self] (string) in
-                                    guard let fieldString = string else {return}
-                                    if !(fieldString.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty) {
-                                        self?.viewModel?.add(title: fieldString)
-                                    }
+                                 action: { [weak self] (fieldString) in
+                                    self?.viewModel?.add(title: fieldString)
                                  })
     }
     
@@ -68,11 +65,8 @@ class ToDoListViewController: BaseViewController<ToDoListViewModel, ToDoListCoor
                                  message: "Edits the title of the selected item. Setting the field empty or just spaces invalidates the process and does nothing.",
                                  buttonActionTitle: "Save",
                                  fieldText: viewModel?.fetchTitle(index: indexPath.row),
-                                 action: { [weak self] (string) in
-                                    guard let fieldString = string else {return}
-                                    if !(fieldString.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty) {
-                                        self?.viewModel?.edit(index: indexPath.row, title: fieldString)
-                                    }
+                                 action: { [weak self] (fieldString) in
+                                    self?.viewModel?.edit(index: indexPath.row, title: fieldString)
                                  })
     }
     

@@ -44,12 +44,18 @@ class ToDoListViewModel: BaseViewModel {
         toDoItemAccessProvider.fetchTitle(index: index)
     }
     
-    public func add(title: String) {
-        toDoItemAccessProvider.add(title: title)
+    public func add(title: String?) {
+        guard let title = title else {return}
+        if !(title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty) {
+            toDoItemAccessProvider.add(title: title)
+        }
     }
     
-    public func edit(index: Int, title: String) {
-        toDoItemAccessProvider.edit(index: index, title: title)
+    public func edit(index: Int, title: String?) {
+        guard let title = title else {return}
+        if !(title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty) {
+            toDoItemAccessProvider.edit(index: index, title: title)
+        }
     }
     
     public func toggle(index: Int) {
