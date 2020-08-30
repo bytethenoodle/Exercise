@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class ToDoListViewController: BaseViewController<ToDoListViewModel, ToDoListCoordinator> {
 
     // MARK: - Outlets
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView?
     @IBOutlet weak var navigationButtonToDoItemAdd: UIBarButtonItem?
     
     // MARK: - Controller Lifecycle
@@ -35,7 +37,7 @@ class ToDoListViewController: BaseViewController<ToDoListViewModel, ToDoListCoor
     }
     
     private func setupCellWhenSwipeTapped() {
-        tableView.rx.setDelegate(self)
+        tableView?.rx.setDelegate(self)
                     .disposed(by: disposeBag)
     }
     
@@ -52,27 +54,69 @@ class ToDoListViewController: BaseViewController<ToDoListViewModel, ToDoListCoor
     // MARK: - Alert Actions
     
     func showAddAlert() {
-        self.showAlertWithField(title: "Add Item",
-                                 message: "Adds a new item to the list. Setting the field empty or just spaces invalidates the process and does nothing.",
-                                 buttonActionTitle: "Add",
-                                 action: { [weak self] (fieldString) in
-                                    self?.viewModel?.add(title: fieldString)
-                                 })
+        
+        // Declare elements for alert
+        
+        var inputTextField: UITextField?
+        
+        let addAction = UIAlertAction(title: "Add", style: .default, handler: { _ in
+            self.viewModel?.add(title: inputTextField?.text)
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        // Setup and show alert
+        
+        showAlertWithTextField(title: "Add Item",
+                               message: "Adds a new item to the list.",
+                               actions: [addAction,
+                                         cancelAction]) { (textField) in
+            textField.placeholder = "Title"
+            textField.text = String.empty
+            inputTextField = textField
+        }
+        
+        // Observe changes in text input
+        inputTextField?.rx.text
+        .bind {
+            addAction.isEnabled =  !($0?.isEmpty ?? true)
+        }
+        .disposed(by: disposeBag)
     }
     
     func showEditAlert(indexPath: IndexPath) {
-        self.showAlertWithField(title: "Edit Item",
-                                 message: "Edits the title of the selected item. Setting the field empty or just spaces invalidates the process and does nothing.",
-                                 buttonActionTitle: "Save",
-                                 fieldText: viewModel?.fetchTitle(index: indexPath.row),
-                                 action: { [weak self] (fieldString) in
-                                    self?.viewModel?.edit(index: indexPath.row, title: fieldString)
-                                 })
+        
+        // Declare elements for alert
+        
+        var inputTextField: UITextField?
+        
+        let saveAction = UIAlertAction(title: "Save", style: .default, handler: { _ in
+            self.viewModel?.edit(index: indexPath.row, title: inputTextField?.text)
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        // Setup and show alert
+        
+        showAlertWithTextField(title: "Edit Item",
+                               message: "Edits the title of the selected item.",
+                               actions: [saveAction,
+                                         cancelAction]) { (textField) in
+            textField.placeholder = "Title"
+            textField.text = String.empty
+            inputTextField = textField
+        }
+        
+        // Observe changes in text input
+        inputTextField?.rx.text
+        .bind {
+            saveAction.isEnabled =  !($0?.isEmpty ?? true)
+        }
+        .disposed(by: disposeBag)
     }
     
     // MARK: - Table Refresh
     
     private func populate() {
+        guard let tableView = tableView else {return}
         let observableToDoItems = viewModel?.get().asObservable()
         let subscription = observableToDoItems?
             .bind(to: tableView.rx.items(cellIdentifier: String(describing: ToDoListItemCell.self),
@@ -86,7 +130,7 @@ class ToDoListViewController: BaseViewController<ToDoListViewModel, ToDoListCoor
 extension ToDoListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.tableView.deselectRow(at: indexPath, animated: false)
+        self.tableView?.deselectRow(at: indexPath, animated: false)
         self.viewModel?.toggle(index: indexPath.row)
     }
     

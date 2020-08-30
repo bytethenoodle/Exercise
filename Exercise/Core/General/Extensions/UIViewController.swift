@@ -10,22 +10,24 @@ import UIKit
 
 extension UIViewController {
     
-    func showAlertWithField(title: String,
-                            message: String,
-                            buttonActionTitle: String,
-                            fieldText: String? = String(),
-                            action: @escaping (_ string: String?) -> Void) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    func showAlertWithTextField(title: String?,
+                                message: String?,
+                                actions: [UIAlertAction],
+                                textFieldSetup: @escaping (_ textField: UITextField) -> Void) {
         
-        alert.addTextField { (field) in
-            field.text = fieldText
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+        
+        alert.title = title
+        alert.message = message
+
+        alert.addTextField { (textField) in
+            textFieldSetup(textField)
         }
-        alert.addAction(UIAlertAction(title: buttonActionTitle, style: .default, handler: { al in
-            let fieldString = alert.textFields?.first?.text
-            action(fieldString)
-        }))
+                
+        for action in actions {
+            alert.addAction(action)
+        }
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
 }
