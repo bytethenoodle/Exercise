@@ -46,8 +46,8 @@ class ToDoItemAccessProvider {
     // MARK: - Operations
     
     public func fetchTitle(index: Int) -> String? {
-        let toDoItem = toDoItemCoreData.value[index]
-        return toDoItem.title
+        let toDoItem = toDoItemCoreData.value[safeIndex: index]
+        return toDoItem?.title
     }
     
     public func add(title: String) {
@@ -56,48 +56,33 @@ class ToDoItemAccessProvider {
         newTodo.title = title
         newTodo.isCompleted = false
         
-        do {
-            try managedObjectContext.save()
-            toDoItemCoreData.accept(fetch())
-        } catch {
-            fatalError("error saving data")
-        }
+        try? managedObjectContext.save()
+        toDoItemCoreData.accept(fetch())
     }
     
     public func edit(index: Int, title: String) {
-        let toDoItem = toDoItemCoreData.value[index]
+        let toDoItem = toDoItemCoreData.value[safeIndex: index]
         
-        toDoItem.title = title
+        toDoItem?.title = title
         
-        do {
-            try managedObjectContext.save()
-            toDoItemCoreData.accept(fetch())
-        } catch {
-            fatalError("error saving data")
-        }
+        try? managedObjectContext.save()
+        toDoItemCoreData.accept(fetch())
     }
     
     public func toggle(index: Int) {
-        toDoItemCoreData.value[index].isCompleted = !toDoItemCoreData.value[index].isCompleted
+        guard let toDoitem = toDoItemCoreData.value[safeIndex: index] else {return}
+        toDoitem.isCompleted = !toDoitem.isCompleted
         
-        do {
-            try managedObjectContext.save()
-            toDoItemCoreData.accept(fetch())
-        } catch {
-            fatalError("error change data")
-        }
-
+        try? managedObjectContext.save()
+        toDoItemCoreData.accept(fetch())
     }
     
     public func remove(index: Int) {
-        managedObjectContext.delete(toDoItemCoreData.value[index])
+        guard let toDoItem = toDoItemCoreData.value[safeIndex: index] else {return}
+        managedObjectContext.delete(toDoItem)
         
-        do {
-            try managedObjectContext.save()
-            toDoItemCoreData.accept(fetch())
-        } catch {
-            fatalError("error delete data")
-        }
+        try? managedObjectContext.save()
+        toDoItemCoreData.accept(fetch())
     }
     
 }
