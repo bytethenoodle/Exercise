@@ -99,9 +99,9 @@ class ToDoListViewController: BaseViewController<ToDoListViewModel, ToDoListCoor
         showAlertWithTextField(title: "Edit Item",
                                message: "Edits the title of the selected item.",
                                actions: [saveAction,
-                                         cancelAction]) { (textField) in
+                                         cancelAction]) { [weak self] (textField) in
             textField.placeholder = "Title"
-            textField.text = String.empty
+            textField.text = self?.viewModel?.fetchTitle(index: indexPath.row)
             inputTextField = textField
         }
         
