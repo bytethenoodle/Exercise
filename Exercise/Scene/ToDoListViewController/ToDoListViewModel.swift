@@ -22,7 +22,7 @@ class ToDoListViewModel: BaseViewModel {
     
     required init() {
         super.init()
-        self.fetchToDoItemsAndUpdateObservableToDoItems()
+        fetchToDoItemsAndUpdateObservableToDoItems()
     }
     
     // MARK: - Operations

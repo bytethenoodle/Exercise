@@ -14,7 +14,7 @@ class ToDoListItemCell: BaseTableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.setupAppearance()
+        setupAppearance()
     }
     
     func setup(toDoItem: ToDoItem) {

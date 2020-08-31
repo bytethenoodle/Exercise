@@ -23,16 +23,16 @@ class ToDoListViewController: BaseViewController<ToDoListViewModel, ToDoListCoor
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.setupViewController()
+        setupViewController()
     }
     
     // MARK: - Setups
     
     private func setupViewController() {
-        DispatchQueue.main.async {
-            self.setupCellWhenSwipeTapped()
-            self.setupForAddAction()
-            self.populate()
+        DispatchQueue.main.async { [weak self] in
+            self?.setupCellWhenSwipeTapped()
+            self?.setupForAddAction()
+            self?.populate()
         }
     }
     
@@ -59,8 +59,8 @@ class ToDoListViewController: BaseViewController<ToDoListViewModel, ToDoListCoor
         
         var inputTextField: UITextField?
         
-        let addAction = UIAlertAction(title: "Add", style: .default, handler: { _ in
-            self.viewModel?.add(title: inputTextField?.text)
+        let addAction = UIAlertAction(title: "Add", style: .default, handler: { [weak self] _ in
+            self?.viewModel?.add(title: inputTextField?.text)
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
@@ -89,8 +89,8 @@ class ToDoListViewController: BaseViewController<ToDoListViewModel, ToDoListCoor
         
         var inputTextField: UITextField?
         
-        let saveAction = UIAlertAction(title: "Save", style: .default, handler: { _ in
-            self.viewModel?.edit(index: indexPath.row, title: inputTextField?.text)
+        let saveAction = UIAlertAction(title: "Save", style: .default, handler: { [weak self] _ in
+            self?.viewModel?.edit(index: indexPath.row, title: inputTextField?.text)
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
@@ -130,8 +130,8 @@ class ToDoListViewController: BaseViewController<ToDoListViewModel, ToDoListCoor
 extension ToDoListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.tableView?.deselectRow(at: indexPath, animated: false)
-        self.viewModel?.toggle(index: indexPath.row)
+        tableView.deselectRow(at: indexPath, animated: false)
+        viewModel?.toggle(index: indexPath.row)
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {

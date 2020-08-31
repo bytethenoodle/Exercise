@@ -19,7 +19,7 @@ class BaseNavigationController: UINavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setAppearance()
+        setAppearance()
     }
     
     private func setAppearance() {
